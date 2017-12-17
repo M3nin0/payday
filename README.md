@@ -12,4 +12,10 @@ A ideia é bastante simples, aqui farei a utilização do Google SpreadSheets, p
 
 Imagem da ideia inicial das primeiras interfaces
 
-![alt text](images_wireframe/menu_registro.png "Menu e Registro")
+![alt text](images_wireframe/menu_registro.png "Menu e Registro - Wireframe")
+
+## Demonstrações
+
+Abaixo algumas demonstrações das janelas do projeto já criadas
+
+![alt text](images_wireframe/menu_registro_real.png "Menu e Registro")
