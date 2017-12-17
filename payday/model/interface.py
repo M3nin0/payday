@@ -55,10 +55,16 @@ class Registro(QDialog):
     def __init__(self):
         '''
             Descrição
-                Método inicializador que carrega a interface do menu principal
+                Método inicializador que carrega a interface do dialogo de registro
         '''
         super(Registro, self).__init__()
         # Conecta com a api e devolve a interface de comunicaçãos
         self.tabela = ToolBox.connect_to_drive()
         # Carrega a interface gráfica
         self.reg = loadUi('view/registro.ui')
+
+class Configuracao(QDialog):
+    def __init__(self):
+        super(Configuracao, self).__init__()
+
+        self.configure = loadUi('view/configuracao.ui')

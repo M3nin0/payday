@@ -103,7 +103,7 @@
     <property name="title">
      <string>Inicio</string>
     </property>
-    <addaction name="actionConfigura_es"/>
+    <addaction name="action_configura"/>
    </widget>
    <widget class="QMenu" name="menuSobre">
     <property name="title">
@@ -114,7 +114,7 @@
    <addaction name="menuSobre"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionConfigura_es">
+  <action name="action_configura">
    <property name="text">
     <string>Configurações</string>
    </property>

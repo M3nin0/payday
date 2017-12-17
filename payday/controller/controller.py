@@ -1,8 +1,12 @@
+import os
 import sys
+import json
 
 from model.interface import Menu
+from model.toolbox import ToolBox
 from model.interface import Registro
-from PyQt5.QtWidgets import QMessageBox, QDialog
+from model.interface import Configuracao
+from PyQt5.QtWidgets import QMessageBox, QDialog, QFileDialog
 
 class MenuController(object):
     '''
@@ -14,9 +18,10 @@ class MenuController(object):
                 Método para realizar a configuração das funções em cada botão
                 do menu principal
         '''
-        self.menu.window.btn_reg_faturas.clicked.connect(lambda: RegistroController())
-        self.menu.window.btn_ver_faturas.clicked.connect(lambda: FaturasController())
         self.menu.window.btn_sair.clicked.connect(lambda: exit())
+        self.menu.window.btn_ver_faturas.clicked.connect(lambda: FaturasController())
+        self.menu.window.btn_reg_faturas.clicked.connect(lambda: RegistroController())
+        self.menu.window.action_configura.triggered.connect(lambda: ConfigController())
 
     def __init__(self):
         self.menu = Menu()
@@ -72,6 +77,54 @@ class RegistroController(object):
         # Inicia o dialogo de registro
         self.dialog.reg.show()
         self.dialog.reg.exec_()
+
+class ConfigController(object):
+
+    def __save_config(self):
+
+        new_configs = {'config_api': []}
+        new_configs['config_api'].append({'path_key': self.config.configure.input_path_api.toPlainText()})
+        new_configs['config_api'].append({'name_sheet': self.config.configure.file_gdrive.toPlainText()})
+
+        _file = 'config/config.json'
+
+        if os.path.isfile(_file):
+            os.remove(_file)
+
+        with open(_file, 'w') as fil:
+            json.dump(new_configs, fil)
+
+    def __select_dir(self):
+        self.client_secret = str(QFileDialog.getOpenFileName(
+            self.config.configure, 'Seleção do diretório de download'))
+
+        if self.client_secret != '':
+            self.config.configure.input_path_api.setText(self.client_secret[2:-19])
+
+    def __init__(self):
+        self.client_secret = ''
+
+        self.config = Configuracao()
+
+        # Definindo as configurações nos campos caso exista
+        if os.path.isfile('config/config.json'):
+            config = ToolBox.load_config()
+
+            if config != -1:
+                self.config.configure.input_path_api.setText(config['config_api'][0]['path_key'])
+                self.config.configure.file_gdrive.setText(config['config_api'][1]['name_sheet'])
+            else:
+                # Criando pré-definições
+                self.config.configure.file_gdrive.setText('faturas')
+
+        # Configurando botão
+        self.config.configure.btn_select_file.clicked.connect(self.__select_dir)
+        self.config.configure.btn_save.clicked.connect(self.__save_config)
+
+
+
+        self.config.configure.show()
+        self.config.configure.exec_()
 
 class FaturasController(object):
     def __init__(self):

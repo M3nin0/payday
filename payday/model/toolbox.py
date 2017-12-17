@@ -1,3 +1,4 @@
+import json
 import pprint
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -17,3 +18,11 @@ class ToolBox(object):
         except BaseException as e:
             print(e)
         return tabela
+
+    @staticmethod
+    def load_config():
+        try:
+            with open('config/config.json') as cfg:
+                return json.load(cfg)
+        except:
+            return -1
