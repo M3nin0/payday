@@ -48,7 +48,16 @@ class RegistroController(object):
             msg = QMessageBox.warning(self.dialog.reg, 'Campos inválidos',
                                         'Todos os campos devem ser preenchidos')
 
-        self.dialog.registrar()
+        result = self.dialog.registrar()
+
+        if result >= 0:
+            resultado = QMessageBox.information(self.dialog.reg, 'Sucesso',
+                                        'Os dados foram salvos com sucesso!')
+        else:
+            resultado = QMessageBox.critical(self.dialog.reg, 'Erro',
+                                        'Erro ao tentar salvar os dados')
+
+        self.dialog.reg.close()
 
     def __config_buttons(self):
         self.dialog.reg.btn_registrar.clicked.connect(self.controla_registro)

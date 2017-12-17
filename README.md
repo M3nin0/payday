@@ -19,3 +19,9 @@ Imagem da ideia inicial das primeiras interfaces
 Abaixo algumas demonstrações das janelas do projeto já criadas
 
 ![alt text](images_wireframe/menu_registro_real.png "Menu e Registro")
+
+## Google API
+
+Para que este programa funcione é necessário, utilizar o Google Drive API, para isso acesse o console de APIs, criei um novo projeto, gere uma credencial de acesso, o arquivo de autenticação gerado deverá ter seu conteudo salvo dentro do arquivo **client_secret.json**.
+
+Não esqueça de criar um projeto que recebe chamadas de um servidor WEB, e ainda que suas chamadas sejam para armazenamento.
