@@ -10,6 +10,24 @@
     <height>417</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>335</width>
+    <height>417</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>335</width>
+    <height>417</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Payday</string>
   </property>
@@ -55,7 +73,7 @@
    <widget class="QPushButton" name="btn_sair">
     <property name="geometry">
      <rect>
-      <x>244</x>
+      <x>235</x>
       <y>344</y>
       <width>87</width>
       <height>29</height>
