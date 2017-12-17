@@ -36,11 +36,17 @@ class RegistroController(object):
                 Método que faz as verificações de campos preenchidos para que depois
                 o registro possa ser feito
         '''
+
+        invalido = False
+        # Realiza verificações de validade nos campos
         if self.dialog.reg.input_empresa.toPlainText().replace(' ', '') == '':
+            invalido = True
+        elif self.dialog.reg.input_valor.value() == 0:
+            invalido = True
+
+        if invalido:
             msg = QMessageBox.warning(self.dialog.reg, 'Campos inválidos',
                                         'Todos os campos devem ser preenchidos')
-            return
-        
 
         self.dialog.registrar()
 
