@@ -17,14 +17,29 @@ class Menu(object):
         self.window = loadUi('view/menu.ui')
 
 class Registro(QDialog):
+    '''
+        Classe da interface de registro de faturas
+    '''
 
     def get_emissao(self):
+        '''
+            Descrição
+                Método que devolve a data de emissão da fatura já formatada
+        '''
         return QLocale(QLocale.Portuguese, QLocale.Brazil).toString(self.reg.date_emissao.date(), 'dd-MM-yyyy')
 
     def get_vencimento(self):
+        '''
+            Descrição
+                Método que devolve a data de vencimento da fatura já formatada
+        '''
         return QLocale(QLocale.Portuguese, QLocale.Brazil).toString(self.reg.date_vencimento.date(), 'dd-MM-yyyy')
 
     def registrar(self):
+        '''
+            Descrição
+                Método que salva a nova fatura inserida pelo usuário
+        '''
         total_row = len(self.tabela.get_all_values()) + 1
         try:
             novo_item = [
@@ -64,6 +79,9 @@ class Registro(QDialog):
         self.reg = loadUi('view/registro.ui')
 
 class Configuracao(QDialog):
+    '''
+        Classe da interface de configurações do programa
+    '''
     def __init__(self):
         super(Configuracao, self).__init__()
 

@@ -34,6 +34,9 @@ class MenuController(object):
         sys.exit(self.menu.app.exec_())
 
 class RegistroController(object):
+    '''
+        Controller dos registros de novas faturas
+    '''
 
     def controla_registro(self):
         '''
@@ -65,6 +68,10 @@ class RegistroController(object):
         self.dialog.reg.close()
 
     def __config_buttons(self):
+        '''
+            Descrição
+                Método para adicionar métodos aos botões
+        '''
         self.dialog.reg.btn_registrar.clicked.connect(self.controla_registro)
 
     def __init__(self):
@@ -81,6 +88,11 @@ class RegistroController(object):
 class ConfigController(object):
 
     def __save_config(self):
+        '''
+            Descrição
+                Método que salva as informações inseridas pelo usuário no arquivos
+                de configurações
+        '''
 
         new_configs = {'config_api': []}
         new_configs['config_api'].append({'path_key': self.config.configure.input_path_api.toPlainText()})
@@ -91,15 +103,29 @@ class ConfigController(object):
         if os.path.isfile(_file):
             os.remove(_file)
 
-        with open(_file, 'w') as fil:
-            json.dump(new_configs, fil)
+        try:
+            with open(_file, 'w') as fil:
+                json.dump(new_configs, fil)
+                final = QMessageBox.information(self.config.configure, 'Sucesso',
+                                            'Sucesso ao salvar as configurações')
+        except:
+            final = QMessageBox.critical(self.config.configure, 'Erro',
+                                        'Erro ao tentar salvar as configurações')
 
     def __select_dir(self):
         self.client_secret = str(QFileDialog.getOpenFileName(
-            self.config.configure, 'Seleção do diretório de download'))
+            self.config.configure, 'Seleção do arquivo chave do google'))
 
         if self.client_secret != '':
             self.config.configure.input_path_api.setText(self.client_secret[2:-19])
+
+    def __config_buttons(self):
+        '''
+            Descrição
+                Método para adicionar métodos aos botões
+        '''
+        self.config.configure.btn_select_file.clicked.connect(self.__select_dir)
+        self.config.configure.btn_save.clicked.connect(self.__save_config)
 
     def __init__(self):
         self.client_secret = ''
@@ -117,10 +143,7 @@ class ConfigController(object):
                 # Criando pré-definições
                 self.config.configure.file_gdrive.setText('faturas')
 
-        # Configurando botão
-        self.config.configure.btn_select_file.clicked.connect(self.__select_dir)
-        self.config.configure.btn_save.clicked.connect(self.__save_config)
-
+        self.__config_buttons()
         self.config.configure.show()
         self.config.configure.exec_()
 

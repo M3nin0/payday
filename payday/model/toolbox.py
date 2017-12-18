@@ -4,8 +4,15 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 class ToolBox(object):
+    '''
+        Classe com métodos úteis para o funcionamento do programa
+    '''
     @staticmethod
     def connect_to_drive():
+        '''
+            Descrição
+                Método para abrir a conexão entre o cliente e o google drive
+        '''
         # Acesso feito utilizando o tutorial:
         # goo.gl/sf4BNr
         scope = ['https://spreadsheets.google.com/feeds']
@@ -21,6 +28,10 @@ class ToolBox(object):
 
     @staticmethod
     def load_config():
+        '''
+            Descrição
+                Método que recupera as informações do arquivo de configuração
+        '''
         try:
             with open('config/config.json') as cfg:
                 return json.load(cfg)
