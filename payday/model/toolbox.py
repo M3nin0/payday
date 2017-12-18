@@ -11,10 +11,10 @@ class ToolBox(object):
         scope = ['https://spreadsheets.google.com/feeds']
         # a chave api deve ser substituida para o app do usuário
         try:
-            creds = ServiceAccountCredentials.from_json_keyfile_name('google-secret/client_secret.json', scope)
+            creds = ServiceAccountCredentials.from_json_keyfile_name(ToolBox.load_config()['config_api'][0]['path_key'], scope)
             client = gspread.authorize(creds)
             # A tabela deverá ser alterada casa não siga o padrão do aplicativo
-            tabela = client.open("faturas").sheet1
+            tabela = client.open(ToolBox.load_config()['config_api'][1]['name_sheet']).sheet1
         except BaseException as e:
             print(e)
         return tabela

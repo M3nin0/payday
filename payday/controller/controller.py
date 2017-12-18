@@ -121,8 +121,6 @@ class ConfigController(object):
         self.config.configure.btn_select_file.clicked.connect(self.__select_dir)
         self.config.configure.btn_save.clicked.connect(self.__save_config)
 
-
-
         self.config.configure.show()
         self.config.configure.exec_()
 
