@@ -86,3 +86,12 @@ class Configuracao(QDialog):
         super(Configuracao, self).__init__()
 
         self.configure = loadUi('view/configuracao.ui')
+
+class Faturas(QDialog):
+    '''
+        Classe da interface de visualização de faturas registradas
+    '''
+    def __init__(self):
+        super(Faturas, self).__init__()
+
+        self.faturas = loadUi('view/faturas.ui')

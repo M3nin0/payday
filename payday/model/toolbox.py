@@ -13,15 +13,18 @@ class ToolBox(object):
             Descrição
                 Método para abrir a conexão entre o cliente e o google drive
         '''
+
+        config = ToolBox.load_config()
+
         # Acesso feito utilizando o tutorial:
         # goo.gl/sf4BNr
         scope = ['https://spreadsheets.google.com/feeds']
         # a chave api deve ser substituida para o app do usuário
         try:
-            creds = ServiceAccountCredentials.from_json_keyfile_name(ToolBox.load_config()['config_api'][0]['path_key'], scope)
+            creds = ServiceAccountCredentials.from_json_keyfile_name(config['config_api'][0]['path_key'], scope)
             client = gspread.authorize(creds)
             # A tabela deverá ser alterada casa não siga o padrão do aplicativo
-            tabela = client.open(ToolBox.load_config()['config_api'][1]['name_sheet']).sheet1
+            tabela = client.open(config['config_api'][1]['name_sheet']).sheet1
         except BaseException as e:
             print(e)
         return tabela
