@@ -101,7 +101,9 @@ class Faturas(QDialog):
                 fatura[6] = 'Fechado'
 
         self.tabela.update_acell('G' + id_alterada, 'Fechado')
-        
+        self.faturas.faturas.clear()
+        self.__preenche_campo()
+
     def visualiza_infos(self):
         id_atual = self.faturas.faturas.currentItem().text()[4]
 
@@ -122,10 +124,9 @@ class Faturas(QDialog):
             print(e)
 
         for fatura in self.faturas_itens:
-            if fatura[6] == 'Em aberto':
-                self.faturas.faturas.addItem(
-                'ID: ' + fatura[0] + ' | ' + fatura[3] + ' - Vencimento: ' + fatura[2]
-                )
+            self.faturas.faturas.addItem(
+            'ID: ' + fatura[0] + ' | ' + fatura[3] + ' - Vencimento: ' + fatura[2] + ' | Status: ' + fatura[6]
+            )
 
     def __init__(self):
         super(Faturas, self).__init__()
