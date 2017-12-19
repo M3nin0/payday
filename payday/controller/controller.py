@@ -114,6 +114,11 @@ class ConfigController(object):
                                         'Erro ao tentar salvar as configurações')
 
     def __select_dir(self):
+        '''
+            Descrição
+                Método que permite ao usuário selecionar o arquivo onde estão
+                as chaves de autenticação do Google 
+        '''
         self.client_secret = str(QFileDialog.getOpenFileName(
             self.config.configure, 'Seleção do arquivo chave do google'))
 
