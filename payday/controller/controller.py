@@ -4,6 +4,7 @@ import json
 
 from model.interface import Menu
 from model.toolbox import ToolBox
+from model.interface import Faturas
 from model.interface import Registro
 from model.interface import Configuracao
 from PyQt5.QtWidgets import QMessageBox, QDialog, QFileDialog
@@ -149,7 +150,11 @@ class ConfigController(object):
 
 class FaturasController(object):
     def __init__(self):
-        pass
+        self.faturas = Faturas()
+
+        # Inicia o dialogo de registro
+        self.faturas.faturas.show()
+        self.faturas.faturas.exec_()
 
 class BotController(object):
     def __init__(self):

@@ -50,16 +50,6 @@
     <string>Faturas registradas</string>
    </property>
   </widget>
-  <widget class="QListView" name="faturas">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>100</y>
-     <width>531</width>
-     <height>271</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btn_view">
    <property name="geometry">
     <rect>
@@ -71,6 +61,16 @@
    </property>
    <property name="text">
     <string>Visualizar detalhes</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="faturas">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>531</width>
+     <height>291</height>
+    </rect>
    </property>
   </widget>
  </widget>
