@@ -66,11 +66,42 @@
   <widget class="QListWidget" name="faturas">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>0</x>
      <y>100</y>
-     <width>531</width>
-     <height>291</height>
+     <width>551</width>
+     <height>301</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>551</width>
+     <height>301</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>551</width>
+     <height>301</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fechar_fatura">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>410</y>
+     <width>161</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Fechar fatura selecionada</string>
    </property>
   </widget>
  </widget>

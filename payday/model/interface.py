@@ -93,6 +93,15 @@ class Faturas(QDialog):
         Classe da interface de visualização de faturas registradas
     '''
 
+    def fechar_fatura(self):
+        id_alterada = self.faturas.faturas.currentItem().text()[4]
+
+        for fatura in self.faturas_itens:
+            if fatura[0] == id_alterada:
+                fatura[6] = 'Fechado'
+
+        self.tabela.update_acell('G' + id_alterada, 'Fechado')
+        
     def visualiza_infos(self):
         id_atual = self.faturas.faturas.currentItem().text()[4]
 
@@ -107,7 +116,10 @@ class Faturas(QDialog):
                                     '\nStatus da fatura: ' + fatura[6])
 
     def __preenche_campo(self):
-        self.faturas_itens = self.tabela.get_all_values()[1:]
+        try:
+            self.faturas_itens = self.tabela.get_all_values()[1:]
+        except BaseException as e:
+            print(e)
 
         for fatura in self.faturas_itens:
             if fatura[6] == 'Em aberto':
@@ -123,5 +135,7 @@ class Faturas(QDialog):
         self.tabela = ToolBox.connect_to_drive()
 
         self.faturas.btn_view.clicked.connect(self.visualiza_infos)
+        self.faturas.fechar_fatura.clicked.connect(self.fechar_fatura)
+
         self.faturas_itens = []
         self.__preenche_campo()
