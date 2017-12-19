@@ -14,14 +14,22 @@ Imagem da ideia inicial das primeiras interfaces
 
 ![alt text](images_wireframe/menu_registro.png "Menu e Registro - Wireframe")
 
-## Demonstrações
+## Já implementado
 
-Abaixo algumas demonstrações das janelas do projeto já criadas
+* Registro de fatura;
+* Confirmação de pagamento da fatura;
+* Configuração via menu da API do Google.
+
+### Demonstração
+
+Abaixo algumas janelas do projeto já criadas
 
 ![alt text](images_wireframe/menu_registro_real.png "Menu e Registro")
 
 ## Google API
 
-Para que este programa funcione é necessário, utilizar o Google Drive API, para isso acesse o console de APIs, criei um novo projeto, gere uma credencial de acesso, o arquivo de autenticação gerado deverá ter seu conteudo salvo dentro do arquivo **client_secret.json**.
+Para que o programa funcione corretamente é necessário que o usuário configure uma API para acesso aos documentos do Google. Para realizar este processo é bastante simples, basta acessar o painel de APIs do Google, criar um novo projeto, e então, criar as credênciais para este aplicativo acessar.
 
-Não esqueça de criar um projeto que recebe chamadas de um servidor WEB, e ainda que suas chamadas sejam para armazenamento.
+OBS: Também será necessário criar uma planilha e informar o nome desta nas configurações do programa.
+
+Caso tenha alguma dúvida acesse: https://goo.gl/JxKuec, neste link os passos para configurar a API são realizados.

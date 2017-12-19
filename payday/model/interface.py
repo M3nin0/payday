@@ -94,6 +94,11 @@ class Faturas(QDialog):
     '''
 
     def fechar_fatura(self):
+        '''
+            Descrição
+                Método para realizar a mudança de status da fatura selecionada
+                pelo usuário
+        '''
         id_alterada = self.faturas.faturas.currentItem().text()[4]
 
         for fatura in self.faturas_itens:
@@ -118,6 +123,11 @@ class Faturas(QDialog):
                                     '\nStatus da fatura: ' + fatura[6])
 
     def __preenche_campo(self):
+        '''
+            Descrição
+                Este método preenche o QListWidgets com os dados recuperados do
+                Google SpreadSheets
+        '''
         try:
             self.faturas_itens = self.tabela.get_all_values()[1:]
         except BaseException as e:

@@ -105,13 +105,7 @@
     </property>
     <addaction name="action_configura"/>
    </widget>
-   <widget class="QMenu" name="menuSobre">
-    <property name="title">
-     <string>Sobre</string>
-    </property>
-   </widget>
    <addaction name="menuInicio"/>
-   <addaction name="menuSobre"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_configura">
