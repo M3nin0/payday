@@ -2,11 +2,17 @@ import os
 import sys
 import json
 
+import numpy as np
+import pandas as pd
+
 from model.interface import Menu
+from time import gmtime, strftime
 from model.toolbox import ToolBox
+from bokeh.layouts import gridplot
 from model.interface import Faturas
 from model.interface import Registro
 from model.interface import Configuracao
+from bokeh.plotting import figure, output_file, show
 from PyQt5.QtWidgets import QMessageBox, QDialog, QFileDialog
 
 class MenuController(object):
@@ -20,6 +26,7 @@ class MenuController(object):
                 do menu principal
         '''
         self.menu.window.btn_sair.clicked.connect(lambda: exit())
+        self.menu.window.btn_ver_relatorio.clicked.connect(lambda: ReportController())
         self.menu.window.btn_ver_faturas.clicked.connect(lambda: FaturasController())
         self.menu.window.btn_reg_faturas.clicked.connect(lambda: RegistroController())
         self.menu.window.action_configura.triggered.connect(lambda: ConfigController())
@@ -117,7 +124,7 @@ class ConfigController(object):
         '''
             Descrição
                 Método que permite ao usuário selecionar o arquivo onde estão
-                as chaves de autenticação do Google 
+                as chaves de autenticação do Google
         '''
         self.client_secret = str(QFileDialog.getOpenFileName(
             self.config.configure, 'Seleção do arquivo chave do google'))
@@ -160,6 +167,53 @@ class FaturasController(object):
         # Inicia o dialogo de registro
         self.faturas.faturas.show()
         self.faturas.faturas.exec_()
+
+class ReportController(object):
+    def __init__(self):
+        actual_time = strftime("%Y-%m-%d_%H-%M-%S", gmtime())
+
+        file_name = 'report/' + actual_time + '.html'
+
+        output_file(file_name)
+
+        table = ToolBox.connect_to_drive()
+
+        faturas_itens = pd.DataFrame(table.get_all_values()[1:])
+
+        faturas_itens.columns = ['fatura_id', 'emissao', 'vencimento',
+        'empresa', 'valor', 'dias_aviso', 'status']
+
+        a_pagar = faturas_itens[faturas_itens['status'] == 'Em aberto']
+        fechados = faturas_itens[faturas_itens['status'] == 'Fechado']
+        arange = np.arange(len(a_pagar['valor']))
+        arange_2 = np.arange(len(fechados['valor']))
+
+        # Plota gráfico com valor das faturas em aberto
+        plot = figure(plot_width=700, plot_height=700, title='Valor das compras (Em aberto)')
+        plot.line(arange, a_pagar['valor'], line_width=4)
+
+        plot_2 = figure(plot_width=700, plot_height=700, title='Faturas abertas X fechadas')
+
+        if len(a_pagar['valor']) > 0:
+            init = 1
+            final = len(a_pagar['valor'])
+        else:
+            init = 0
+            final = 0
+
+        if len(fechados['valor']) > 0:
+            init_2 = 1
+            final_2 = len(fechados['valor']) + 1
+        else:
+            init_2 = 0
+            final_2 = 0
+
+        plot_2.multi_line([arange, np.arange(init, final)], [arange, np.arange(init_2, final_2)],
+             color=["firebrick", "navy"], alpha=[0.8, 0.3], line_width=4)
+
+        grid = gridplot([[plot, plot_2]])
+
+        show(grid)
 
 class BotController(object):
     def __init__(self):

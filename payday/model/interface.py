@@ -4,6 +4,7 @@ from PyQt5.uic import loadUi
 from model.toolbox import ToolBox
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import QDate, QLocale
+from PyQt5.QtWebKitWidgets import QWebView
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
 class Menu(object):
