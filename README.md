@@ -26,6 +26,10 @@ Abaixo algumas janelas do projeto já criadas
 
 ![alt text](images_wireframe/menu_registro_real.png "Menu e Registro")
 
+Janela dos gráficos gerados pelo aplicativo (Este pode ser visualizado em <code>Exemplos</code>)
+
+![alt text](images_wireframe/graficos_faturas.png "Gráficos")
+
 ## Google API
 
 Para que o programa funcione corretamente é necessário que o usuário configure uma API para acesso aos documentos do Google. Para realizar este processo é bastante simples, basta acessar o painel de APIs do Google, criar um novo projeto, e então, criar as credênciais para este aplicativo acessar.
