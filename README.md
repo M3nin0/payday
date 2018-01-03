@@ -30,6 +30,20 @@ Janela dos gráficos gerados pelo aplicativo (Este pode ser visualizado em <code
 
 ![alt text](images_wireframe/graficos_faturas.png "Gráficos")
 
+## Planilha
+
+Para visualizar o formato da planilha, veja <code>planilha_exemplo/faturas.ods</code>.
+
+Vale lembrar que, quando uma nova planilha for criada para o programa utilizar será necessário inserir os cabeçalhos:
+
+- fatura_id
+- emissao
+- vencimento
+- empresa
+- valor
+- dias_aviso
+- status
+
 ## Google API
 
 Para que o programa funcione corretamente é necessário que o usuário configure uma API para acesso aos documentos do Google. Para realizar este processo é bastante simples, basta acessar o painel de APIs do Google, criar um novo projeto, e então, criar as credênciais para este aplicativo acessar.
