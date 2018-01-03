@@ -44,6 +44,11 @@ Vale lembrar que, quando uma nova planilha for criada para o programa utilizar s
 - dias_aviso
 - status
 
+## Bot
+
+Há um bot que foi criado para ajudar você a lembrar das faturas, ele faz o envio de um lembrete de quais faturas precisam ser pagas, caso queira saber mais, acesse:
+- https://github.com/M3nin0/payday-bot
+
 ## Google API
 
 Para que o programa funcione corretamente é necessário que o usuário configure uma API para acesso aos documentos do Google. Para realizar este processo é bastante simples, basta acessar o painel de APIs do Google, criar um novo projeto, e então, criar as credênciais para este aplicativo acessar.
